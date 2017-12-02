@@ -1,0 +1,88 @@
+
+
+<header class="jumbotron">
+  <h1>Add a new character</h1>
+</header>
+
+<div class="container">
+  <div class="row">
+    <form class="" action="/character" method="POST">
+      <div class="form-group">
+        <label for="herovillain">Select Hero or Villain</label>
+        <select class="form-control" id="herovillain" name="herovillain" required>
+          <option disabled selected value> -- select  -- </option>
+          <option value="1">Hero</option>
+          <option value="2">Villain</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="moniker" value="" placeholder="moniker" required>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="powers" value="" placeholder="powers">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="firstname" value="" placeholder="first name">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="lastname" value="" placeholder="last name">
+      </div>
+      <div class="form-group">
+        <label for="planet">Planet:</label>
+        <select class="form-control" id="planet" name="planet">
+          {{#each planets}}
+            <option value="{{id}}">{{planet_name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="series">Originating Series:</label>
+        <select class="form-control" id="series" name="series">
+          {{#each series}}
+            <option value="{{id}}">{{series_name}} ({{year}})</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="teams">Team:</label>
+        <select class="form-control" id="teams" name="teams">
+          {{#each teams}}
+            <option value="{{id}}">{{team_name}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="nemesis">Nemesis</label>
+        <select multiple class="form-control" id="nemesis" name="nemesis">
+          <option disabled selected value> -- select  -- </option>
+          {{#each heros}}
+            <option class="h" value="{{id}}">{{moniker}}</option>
+          {{/each}}
+
+          {{#each villains}}
+            <option class="v" value="{{id}}">{{villain_moniker}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" name="" value="Submit">
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+//This script allows the drop down selection to change based on hero/villain status.
+//Heroes will have villains as nemesis and villains will have heroes as nemesis
+$("#herovillain").change(function(){
+  if ($("#herovillain").val() == 1) {
+    $(".h").hide();
+    $(".v").show();
+  } else {
+    $(".v").hide();
+    $(".h").show();
+  }
+})
+</script>

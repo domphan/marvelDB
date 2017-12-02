@@ -1,0 +1,110 @@
+<div class="container">
+  <header class="jumbotron">
+    <div class="row">
+      <div class="col-9">
+        {{#if hero}}
+          <h1>{{hero.moniker}}</h1>
+        {{/if}}
+        {{#if villain}}
+          <h1>{{villain.villain_moniker}}</h1>
+        {{/if}}
+      </div>
+      <div class="col-3">
+        <a href="/character" class="btn btn-primary">back to characters</a>
+      </div>
+    </div>
+
+
+  </header>
+  <div class="row">
+    <div class="col-6">
+      {{#if hero}}
+      <div class="well">
+        <p>First Name: {{#unless hero.first_name}}N/A{{/unless}}{{hero.first_name}}</p>
+        <p>Last Name: {{#unless hero.last_name}}N/A{{/unless}}{{hero.last_name}}</p>
+        <p>Powers: {{hero.powers}}</p>
+        <p>Planet: {{hero.planet_name}}</p>
+        <p>Nemesis: {{#each heroNemesis}} {{villain_moniker}} {{/each}}</p>
+        <p>Series: {{hero.series_name}}</p>
+        <p>Teams: {{#each heroTeams}} "{{team_name}}" {{/each}}</p>
+      </div>
+      {{/if}}
+      {{#if villain}}
+      <div class="well">
+        <p>First Name: {{#unless villain.first_name}}N/A{{/unless}}{{villain.first_name}}</p>
+        <p>Last Name: {{#unless villain.last_name}}N/A{{/unless}}{{villain.last_name}}</p>
+        <p>Powers: {{villain.powers}}</p>
+        <p>Planet: {{villain.planet_name}}</p>
+        <p>Nemesis: {{#each villainNemesis}} {{moniker}} {{/each}}</p>
+        <p>Series: {{villain.series_name}}</p>
+        <p>Teams: {{#each villainTeams}} "{{team_name}}" {{/each}}</p>
+      </div>
+      {{/if}}
+      <a class="btn btn-info" href="/character/{{#if hero}}hero{{else}}villain{{/if}}/{{hero.id}}{{villain.id}}/edit">Edit Character</a>
+      <p> </p>
+      <form class="" action="/character/{{#if hero}}hero{{else}}villain{{/if}}/{{hero.id}}{{villain.id}}/?_method=DELETE" method="POST">
+        <button class="btn btn-danger" name="button">Delete Character</button>
+      </form>
+    </div>
+    <div class="col-6">
+      <!-- Remove a nemesis -->
+      <form class="" action="/character/{{#if hero}}hero/{{hero.id}}{{/if}}{{#if villain}}villain/{{villain.id}}{{/if}}/removeNemesis" method="post">
+        <div class="form-group">
+          <label for="currentNemesis">Remove a nemesis: </label>
+          <select class="currentNemesis" name="currentNemesis">
+            {{#each villainNemesis}}
+              <option value="{{id}}">{{moniker}}</option>
+            {{/each}}
+            {{#each heroNemesis}}
+              <option value="{{id}}">{{villain_moniker}}</option>
+            {{/each}}
+          </select>
+          <button class="btn btn-warning" type="submit" name="button">remove</button>
+        </div>
+      </form>
+      <!-- Add a nemesis -->
+      <form class="" action="/character/{{#if hero}}hero/{{hero.id}}{{/if}}{{#if villain}}villain/{{villain.id}}{{/if}}/addNemesis" method="post">
+        <div class="form-group">
+          <label for="addNemesis">Add a nemesis: </label>
+          <select class="addNemesis" name="addNemesis">
+            {{#each heros}}
+            <option value="{{id}}">{{moniker}}</option>
+            {{/each}}
+            {{#each villains}}
+            <option value="{{id}}">{{villain_moniker}}</option>
+            {{/each}}
+          </select>
+          <button type="submit" class="btn btn-success" name="button">add</button>
+        </div>
+      </form>
+      <!-- Remove a team -->
+      <form class="" action="/character/{{#if hero}}hero/{{hero.id}}{{/if}}{{#if villain}}villain/{{villain.id}}{{/if}}/removeTeam" method="post">
+        <div class="form-group">
+          <label for="currentTeams">Remove a team: </label>
+          <select class="" name="currentTeams">
+            {{#each villainTeams}}
+            <option value="{{id}}">{{team_name}}</option>
+            {{/each}}
+            {{#each heroTeams}}
+            <option value="{{id}}">{{team_name}}</option>
+            {{/each}}
+          </select>
+          <button type="submit" class="btn btn-warning" name="button">remove</button>
+        </div>
+
+      </form>
+      <!-- Add a team -->
+      <form class="" action="/character/{{#if hero}}hero/{{hero.id}}{{/if}}{{#if villain}}villain/{{villain.id}}{{/if}}/addTeam" method="post">
+        <div class="form-group">
+          <label for="addTeam">Add a team: </label>
+          <select class="" name="addTeam">
+            {{#each teams}}
+            <option value="{{id}}">{{team_name}}</option>
+            {{/each}}
+          </select>
+          <button type="submit" class="btn btn-success" name="button">add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

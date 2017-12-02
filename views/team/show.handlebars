@@ -1,0 +1,53 @@
+<header class="jumbotron">
+  <h1>{{teamname}}</h1>
+</header>
+
+
+
+
+<div class="container" style="margin-bottom: 50px;">
+  <h2>Team members:</h2>
+<div class="container-fluid"  style="margin-bottom: 50px;">
+
+
+  {{#each heroMembers}}
+  <div class="row">
+    <em>{{moniker}}</em>
+  </div>
+  {{/each}}
+  {{#each villainMembers}}
+  <div class="row">
+    <em>{{villain_moniker}}</em>
+  </div>
+  {{/each}}
+</div>
+
+<h2>Add a Hero member</h2>
+<form class="addHero" action="/team/{{teamid}}/hero/add" method="POST">
+  <div class="form-group">
+    <label for="character">Select a character to add:</label>
+    <select class="form-control" name="addHero">
+      <option disabled selected value> -- select  -- </option>
+      {{#each heros}}<option value="{{this.id}}">{{moniker}}</option>{{/each}}
+    </select>
+  </div>
+  <div class="form-group" style="margin-bottom: 50px;">
+    <button type="submit" name="button">Submit</button>
+  </div>
+</form>
+
+<h2>Add a Villain member</h2>
+<form class="addVillain" action="/team/{{teamid}}/villain/add" method="POST">
+  <div class="form-group">
+    <label for="character">Select a character to add:</label>
+    <select class="form-control" name="addVillain">
+      <option disabled selected value> -- select  -- </option>
+      {{#each villains}}<option value="{{this.id}}">{{villain_moniker}}</option>{{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <button type="submit" name="button">Submit</button>
+  </div>
+</form>
+
+</div>

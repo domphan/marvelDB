@@ -1,0 +1,87 @@
+CREATE TABLE planet (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  planet_name VARCHAR(255) NOT NULL,
+  description TEXT,
+  level_of_technology VARCHAR(255) NOT NULL
+) ENGINE = InnoDB;
+
+CREATE TABLE series (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  series_name VARCHAR(255),
+  year INT
+) ENGINE = InnoDB;
+
+CREATE TABLE hero (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
+  moniker VARCHAR(255) NOT NULL,
+  powers TEXT,
+  pid INT,
+  sid INT,
+  FOREIGN KEY(pid) REFERENCES planet(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  FOREIGN KEY(sid) REFERENCES series(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE villain (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
+  villain_moniker VARCHAR(255) NOT NULL,
+  powers TEXT,
+  pid INT,
+  sid INT,
+  FOREIGN KEY(pid) REFERENCES planet(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  FOREIGN KEY(sid) REFERENCES series(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE team (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  team_name VARCHAR(255)
+) ENGINE = InnoDB;
+
+
+
+CREATE TABLE hero_villain_nemesis (
+  hid INT NOT NULL,
+  vid INT NOT NULL,
+  FOREIGN KEY (hid) REFERENCES hero(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  FOREIGN KEY (vid) REFERENCES villain(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  UNIQUE (hid, vid)
+) ENGINE = InnoDB;
+
+CREATE TABLE hero_team (
+  hid INT NOT NULL,
+  tid INT NOT NULL,
+  FOREIGN KEY (hid) REFERENCES hero(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  FOREIGN KEY (tid) REFERENCES team(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  UNIQUE(hid, tid)
+) ENGINE = InnoDB;
+
+CREATE TABLE villain_team (
+  vid INT NOT NULL,
+  tid INT NOT NULL,
+  FOREIGN KEY (vid) REFERENCES villain(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  FOREIGN KEY (tid) REFERENCES team(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  UNIQUE(vid, tid)
+) ENGINE = InnoDB;

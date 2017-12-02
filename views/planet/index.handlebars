@@ -1,0 +1,26 @@
+<div class="container">
+  <header class="jumbotron">
+    <div class="container">
+      <h1>PLANETS</h1>
+      <p>View planets from the Marvel Cinematic Universe</p>
+      <a href="/planet/new" class="btn btn-primary float-right">Add a new planet</a>
+    </div>
+  </header>
+</div>
+
+<div class="row text-center" style="display:flex; flex-wrap: wrap; margin-bottom: 100px;" >
+  {{#each planets}}
+    <div class="col-md-3 col-sm-6 searchTerm" style="margin-bottom: 100px;">
+      <h4>{{planet_name}}</h4>
+      <p>
+        <em>{{description}}</em>
+      </p>
+      <p>
+        Level of Technology: {{level_of_technology}}
+      </p>
+      <form class="" action="/planet/{{id}}/delete?_method=DELETE" method="POST">
+        <button type="submit" name="button" class="btn btn-danger">Delete Planet</button>
+      </form>
+    </div>
+  {{/each}}
+</div>

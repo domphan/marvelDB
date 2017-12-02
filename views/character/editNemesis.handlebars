@@ -1,0 +1,21 @@
+<!-- ADD NEMESIS -->
+      <div class="form-group">
+        <label for="nemesis">Add Nemesis:</label>
+        <select multiple class="form-control" id="nemesis" name="nemesis">
+          {{#each contextAll.heros}}
+            <option value="{{id}}">{{moniker}}</option>
+          {{/each}}
+
+          {{#each contextAll.villains}}
+            <option value="{{id}}">{{villain_moniker}}</option>
+          {{/each}}
+        </select>
+      </div>
+<!-- REMOVE NEMESIS -->
+  <div class="form-group">
+    <label for="removeNemesis">Remove Nemesis:</label>
+    <select multiple class="form-control" id="removeNemesis" name="removeNemesis">
+      <!-- TODO: NEED TO MAKE SELECTOR AND SEND IN CURRENT NEMESIS LIST -->
+      <!-- TODO: NEED QUERY IN CHARACTER ROUTE TO REMOVE NEMESIS FROM TABLE-->
+    </select>
+  </div>

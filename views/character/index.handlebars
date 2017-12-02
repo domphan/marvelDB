@@ -1,0 +1,33 @@
+<div class="container">
+  <header class="jumbotron">
+    <div class="container">
+      <h1>MARVEL CHARACTERS</h1>
+      <p>View characters from the Marvel Cinematic Universe</p>
+      <a href="/character/new" class="btn btn-primary float-right">Add a new character</a>
+    </div>
+  </header>
+</div>
+
+<h1 style="text-align: center;">Heroes</h1>
+<div class="row text-center" style="display:flex; flex-wrap: wrap; margin-bottom: 100px;">
+  {{#each heros}}
+    <div class="col-md-3 col-sm-6 searchTerm" style="margin-bottom: 50px;">
+      <h4>{{moniker}}</h4>
+      <p>
+        <a href="/character/hero/{{id}}" class="btn btn-primary">info</a>
+      </p>
+    </div>
+  {{/each}}
+</div>
+
+<h1 style="text-align: center;">Villains</h1>
+<div class="row text-center" style="display:flex; flex-wrap: wrap; margin-bottom: 100px;">
+  {{#each villains}}
+    <div class="col-md-3 col-sm-6 searchTerm" style="margin-bottom: 50px;">
+      <h4>{{villain_moniker}}</h4>
+      <p>
+        <a href="/character/villain/{{id}}" class="btn btn-primary">info</a>
+      </p>
+    </div>
+  {{/each}}
+</div>

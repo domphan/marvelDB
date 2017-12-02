@@ -1,0 +1,32 @@
+
+<header class="jumbotron">
+  <h1>Add a new planet</h1>
+</header>
+
+<div class="container">
+  <div class="row">
+    <form class="" action="/planet" method="post">
+      <div class="form-group">
+        <input class="form-control" type="text" name="planetname" value="" placeholder="planet name" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Planet's description:</label>
+        <textarea  style="margin-bottom: 15px;" name="description" id="description" rows="5" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="technology">Level of technology</label>
+        <select class="form-control" id="technology" name="technology">
+          <option disabled selected value> -- select  -- </option>
+          <option value="Very Low">Very Low</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+          <option value="Very High">Very High</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <button type="submit" name="button">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

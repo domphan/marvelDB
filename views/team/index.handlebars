@@ -1,0 +1,21 @@
+<div class="container">
+  <header class="jumbotron">
+    <div class="container">
+      <h1>Teams</h1>
+      <p>View the teams from the Marvel Cinematic Universe</p>
+      <a href="/team/new" class="btn btn-primary float-right">Add a new team</a>
+    </div>
+  </header>
+</div>
+
+<div class="row text-center" style="display:flex; flex-wrap: wrap; margin-bottom: 100px;" >
+  {{#each teams}}
+    <div class="col-md-3 col-sm-6 searchTerm" style="margin-bottom: 100px;">
+      <h4>{{team_name}}</h4>
+      <a href="/team/{{id}}" class="btn btn-info">View team members</a>
+      <form class="" action="/team/{{id}}/delete?_method=DELETE" method="POST">
+        <button type="submit" name="button" class="btn btn-danger">Delete Team</button>
+      </form>
+    </div>
+  {{/each}}
+</div>
